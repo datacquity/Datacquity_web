@@ -364,7 +364,7 @@
     <div class="foot">
       <div class="logo">data<span style="color:var(--g3)">cquity</span></div>
       <p class="desc">The pharma commercial AI-powered OS. Proven process, on the technology you already own.</p>
-      <a href="#contact">hello@datacquity.com</a>
+      <a href="#contact">yogesh@datacquity.com</a>
     </div>
     <div class="foot-bottom">
       <span>© <span id="yr"></span> Datacquity. All rights reserved.</span>
@@ -391,14 +391,27 @@
     lastY=y;
   });
 
-  // form (front-end stub — wire to a backend / form service before launch)
+  // form — opens a pre-filled email to Datacquity
   function handleSubmit(e){
     e.preventDefault();
     const f=e.target;
     if(!f.checkValidity()) return false;
-    f.querySelectorAll('input,textarea,button').forEach(el=>el.style.display='none');
-    f.querySelector('.fk');
-    document.getElementById('formMsg').style.display='block';
+
+    const name=f.elements.name.value.trim();
+    const company=f.elements.company.value.trim();
+    const email=f.elements.email.value.trim();
+    const message=f.elements.message.value.trim();
+
+    const subject=encodeURIComponent('Commercial Operations AI-Readiness Assessment Request');
+    const body=encodeURIComponent(
+      'New readiness assessment request\n\n' +
+      'Name: ' + name + '\n' +
+      'Company: ' + company + '\n' +
+      'Work email: ' + email + '\n' +
+      'What they would like to improve: ' + (message || 'Not specified')
+    );
+
+    window.location.href='mailto:yogesh@datacquity.com?subject='+subject+'&body='+body;
     return false;
   }
 </script>
